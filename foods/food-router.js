@@ -16,7 +16,7 @@ router.get("/food/:id", restricted(), async (req, res, next) => {
 
 router.post("/add/:id", restricted(), async (req, res, next) => {
     try {
-        const food = req.params.id + req.body
+        const food = req.body
         await foodModel.add(food)
         res.status(201).json(food)
 

@@ -19,14 +19,13 @@ router.post("/register", async (req, res, next) => {
 router.post("/login", async (req, res, next) => {
     try {
         const user = await userModel.findBy(req.body.username).first()
-        console.log(`************${user.password}****************`)
         let valid = await bcrypt.compare(req.body.password, user.password)
 
         if (user && valid) {
             const token = generateToken(user)
             req.session.token = user
             res.status(201).json({
-                message: `welcome ${user}`,
+                message: `welcome ${user.username}`,
                 token
             })
         } else {

@@ -3,8 +3,8 @@ const db = require("../database/dbConfig")
 
 function findBy(filter) {
     return db("users")
-        .where(filter)
-        .select("id", "username")
+        .where("username", filter)
+        .select("id", "username", "password")
 }
 
 async function add(user) {

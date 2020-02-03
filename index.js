@@ -31,6 +31,13 @@ server.use(express.json())
 server.use(session(sessionConfig))
 server.use(helmet())
 server.use(cors())
+
+server.get("/", (req, res, next) => {
+    res.status(200).json({
+        message: "working"
+    })
+})
+
 server.use("/api", auth)
 server.use("/api", food)
 

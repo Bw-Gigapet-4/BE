@@ -1,6 +1,10 @@
 const bcrypt = require("bcryptjs")
 const db = require("../database/dbConfig")
 
+function find {
+    return db("users")
+}
+
 function findBy(filter) {
     return db("users")
         .where("username", filter)

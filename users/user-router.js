@@ -7,3 +7,5 @@ const router = express.Router()
 router.get("/users", restricted(), (req, res, next) => {
     db.findBy()
 })
+
+module.exports = router

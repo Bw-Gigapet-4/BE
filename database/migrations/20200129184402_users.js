@@ -9,6 +9,7 @@ exports.up = async function(knex) {
     await knex.schema.createTable("foods", (table) => {
         table.increments("id").notNullable()
         table.string("food").notNullable()
+        table.string("category").notNullable()
         table.string("serving_size")
         table.integer("user_id")
             .notNullable()

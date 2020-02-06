@@ -11,6 +11,12 @@ async function add(food) {
         .where("user_id", food.user_id)
 }
 
+async function update(changes) {
+    await db("foods")
+        .update(changes)
+        .where("id", changes.id)
+}
+
 function remove(id) {
     return db("foods")
         .where({ id })
@@ -20,5 +26,6 @@ function remove(id) {
 module.exports = {
     food,
     add,
-    remove
+    remove,
+    update
 }

@@ -10,4 +10,6 @@ Get foods: https://gigapetapi.herokuapp.com/api/food/:id get a list of foods per
 
 Post foods: https://gigapetapi.herokuapp.com/api/add/:id add foods to list of foods per user you will need to put in user_id: req.params.id in the request body for this to work
 
+Put foods: https://gigapetapi.herokuapp.com/api/update/:id update food by id again you will need to put user_id: req.params.id in the request body as well as have the id itself returned in the request body
+
 Delete food: https://gigapetapi.herokuapp.com/api/remove/:id needs a food id to delete the food but the get foods should return that just fine

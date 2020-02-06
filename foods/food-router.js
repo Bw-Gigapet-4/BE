@@ -25,6 +25,16 @@ router.post("/add/:id", restricted(), async (req, res, next) => {
     }
 })
 
+router.put("/update/:id", restricted(), async (req, res, next) => {
+    try {
+        const changes = req.body
+        await foodModel.update(changes)
+        res.status(201).json(changes)
+    } catch (err) {
+        next(err)
+    }
+})
+
 router.delete("/remove/:id", restricted(), async (req, res, next) => {
     try {
         const id = req.params.id

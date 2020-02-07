@@ -9,6 +9,16 @@ const router = express.Router()
 router.post("/register", async (req, res, next) => {
     try {
         const saved = await userModel.add(req.body)
+        const user = await userModel.findBy(req.body.username)
+        const token = generateToken(user)
+
+        req.session.token = user
+        res.status(201).json({
+            message: `welcome ${user.username}`,
+            token,
+            userId: user.id,
+            username: user.username 
+        })
 
         res.status(201).json(saved)
     } catch(err) {
@@ -17,6 +27,7 @@ router.post("/register", async (req, res, next) => {
 })
 
 router.post("/login", async (req, res, next) => {
+    console.log('login req.body',req.body)
     try {
         const [user] = await userModel.findBy({username: req.body.username})
         console.log("*************" + user + "********************")
@@ -28,7 +39,9 @@ router.post("/login", async (req, res, next) => {
                 req.session.token = user
                 res.status(201).json({
                     message: `welcome ${user.username}`,
-                    token
+                    token,
+                    userId: user.id,
+                    username: user.username 
                 })
             }
         } else {

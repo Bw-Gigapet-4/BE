@@ -43,12 +43,12 @@ server.use("/api", auth)
 server.use("/api", food)
 server.use("/users", users)
 
-server.use((err, req, res, next) => {
-    console.log(err)
-    res.status(500).json({
-        error: "come back later when its fixed"
-    })
-})
+// server.use((err, req, res, next) => {
+//     console.log(err)
+//     res.status(500).json({
+//         error: "come back later when its fixed"
+//     })
+// })
 
 
 if (!module.parent) {

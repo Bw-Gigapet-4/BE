@@ -19,18 +19,21 @@ router.post("/register", async (req, res, next) => {
 router.post("/login", async (req, res, next) => {
     try {
         const [user] = await userModel.findBy({username: req.body.username})
-        let valid = await bcrypt.compare(req.body.password, user.password)
-
-        if (user && valid) {
-            const token = generateToken(user)
-            req.session.token = user
-            res.status(201).json({
-                message: `welcome ${user.username}`,
-                token
-            })
+        console.log("*************" + user + "********************")
+        
+        if (user) {
+            let valid = await bcrypt.compare(req.body.password, user.password)
+            if (valid) {
+                const token = generateToken(user)
+                req.session.token = user
+                res.status(201).json({
+                    message: `welcome ${user.username}`,
+                    token
+                })
+            }
         } else {
-            res.status(401).json({
-                message: "please dont brute force me"
+            res.status(404).json({
+                message: "user not found"
             })
         }
     } catch(err) {

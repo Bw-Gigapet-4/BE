@@ -7,12 +7,16 @@ const secrets = require("../config/secrets")
 const router = express.Router()
 
 router.post("/register", async (req, res, next) => {
+    console.log(req.body)
     try {
-        const saved = await userModel.add(req.body)
-        const user = await userModel.findBy(req.body.username)
+        const user = await userModel.add(req.body)
+        
+        console.log('user',user)
+        
         const token = generateToken(user)
 
         req.session.token = user
+
         res.status(201).json({
             message: `welcome ${user.username}`,
             token,
@@ -20,7 +24,7 @@ router.post("/register", async (req, res, next) => {
             username: user.username 
         })
 
-        res.status(201).json(saved)
+        
     } catch(err) {
         next(err)
     }

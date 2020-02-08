@@ -11,6 +11,7 @@ exports.up = async function(knex) {
         table.string("food").notNullable()
         table.string("category").notNullable()
         table.string("serving_size")
+        table.string("date").notNullable()
         table.integer("user_id")
             .notNullable()
             .references("id")

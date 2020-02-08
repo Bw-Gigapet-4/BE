@@ -5,6 +5,7 @@ const restricted = require("../middleware/restricted")
 const router = express.Router()
 
 router.get("/food/:id", restricted(), async (req, res, next) => {
+    console.log('from get request',req.headers)
     try {
         const id = req.params.id
         const foods = await foodModel.food(id)

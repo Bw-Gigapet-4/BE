@@ -17,5 +17,5 @@ test("post login", async () => {
     const res = await supertest(server)
         .post("/api/login")
         .send({ username: "bill", password: "bill123" })
-    expect(res.status).toBe(500)
+    expect(res.status).toBe(404)
 })
